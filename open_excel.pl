@@ -6,6 +6,10 @@ $nowtime = sprintf("%02d%02d%02d%02d%02d%02d", $year-100, $mon+1, $mday, $hour, 
 $out_filename = 'test1_'.$nowtime.'.xlsx'; #test1_230725215223
 my $workbook = Excel::Writer::XLSX->new($out_filename);
 
+# load tabel
+$Target_name= "Target_table.csv"; #target table
+open(my $T_data, '<', $Target_name) or die 'Could not open bining table \n';
+
 
 #localtime()：這是Perl的一個內建函式，用於獲取當前的本地時間。它會返回一個包含了年、月、日、時、分、秒等時間元素的列表。
 #列表解包：將localtime()的返回值列表中的各個元素解包，分別賦值給變數$sec、$min、$hour、$mday、$mon、$year、$wday、$yday和$isdst。這樣就可以直接使用這些變數來表示相應的時間元素。
