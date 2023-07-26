@@ -6,9 +6,24 @@ $nowtime = sprintf("%02d%02d%02d%02d%02d%02d", $year-100, $mon+1, $mday, $hour, 
 $out_filename = 'test1_'.$nowtime.'.xlsx'; #test1_230725215223
 my $workbook = Excel::Writer::XLSX->new($out_filename);
 
-# load tabel
-$Target_name= "Target_table.csv"; #target table
-open(my $T_data, '<', $Target_name) or die 'Could not open bining table \n';
+# 創建一個工作表
+my $worksheet = $workbook->add_worksheet();
+
+# 使用迴圈寫入數字1到10到Excel的A列和A1到A10行
+for my $row (0..9) {
+    for my $col (0..2) {
+        $worksheet->write($row, $col, $row + 1);
+		$row = $row + 1
+    }
+}
+
+# 關閉 Excel 工作簿
+$workbook->close();
+
+
+## load tabel
+#$Target_name= "Target_table.csv"; #target table
+#open(my $T_data, '<', $Target_name) or die 'Could not open bining table \n';
 
 
 #localtime()：這是Perl的一個內建函式，用於獲取當前的本地時間。它會返回一個包含了年、月、日、時、分、秒等時間元素的列表。
